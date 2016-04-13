@@ -211,6 +211,21 @@ var MM = (function() {
 		config = Object.assign(defaults, config);
 	};
 
+	/* enableFullScreen()
+	 * Use the fullscreen API to activate fullscreen mode
+	 */
+	var enableFullScreen = function() {
+		if (document.documentElement.requestFullscreen) {
+			document.documentElement.requestFullscreen();
+		} else if (document.documentElement.msRequestFullscreen) {
+			document.documentElement.msRequestFullscreen();
+		} else if (document.documentElement.mozRequestFullScreen) {
+			document.documentElement.mozRequestFullScreen();
+		} else if (document.documentElement.webkitRequestFullscreen) {
+			document.documentElement.webkitRequestFullscreen();
+		}
+	};
+
 	/* setSelectionMethodsForModules()
 	 * Adds special selectors on a collection of modules.
 	 *
@@ -322,6 +337,11 @@ var MM = (function() {
 			loadConfig();
 			Translator.loadCoreTranslations(config.language);
 			Loader.loadModules();
+			// Most browers (by default) do not allow for this without user interaction
+			enableFullScreen();
+			document.documentElement.addEventListener("click", function() {
+				enableFullScreen();
+			}, false);
 		},
 
 		/* modulesStarted(moduleObjects)

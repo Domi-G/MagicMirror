@@ -48,6 +48,12 @@ curl -sL https://raw.githubusercontent.com/MichMich/MagicMirror/master/installer
 ### Server Only
 
 In some cases, you want to start the application without an actual app window. In this case, execute the following command from the MagicMirror folder: `node serveronly`. This will start the server, after which you can open the application in your browser of choice.
+If you use Firefox you can also enable the automatic fullscreen mode by setting this values on the `about:config` page:
+
+* full-screen-api.allow-trusted-requests-only = `false`
+* full-screen-api.warning.timeout = `0` (optional - hides the fullscreen start massage)
+
+Alternatively the fullscreen mode can be activated by a single mouseclick somewhere inside the browser window.
 
 ### Raspberry Configuration & Auto Start.
 
